@@ -40,7 +40,7 @@ type memLog[T any] struct {
 // entries.  Once the log reaches the maximum number of
 // entries, as new entries are added, the oldest entries
 // are removed.
-func NewMemLog[T any](maxEntries int) *memLog[T] {
+func New[T any](maxEntries int) *memLog[T] {
 	return &memLog[T]{
 		max: maxEntries,
 	}

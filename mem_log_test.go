@@ -26,7 +26,7 @@ func bToMb(b uint64) uint64 {
 
 func Test_memlog_get_slice_when_empty(t *testing.T) {
 	// given a memlog
-	log := NewMemLog[string](10)
+	log := New[string](10)
 
 	// when a slice is created from an empty log
 	slice := log.Slice()
@@ -38,7 +38,7 @@ func Test_memlog_get_slice_when_empty(t *testing.T) {
 
 func Test_memlog_get_length_when_size_is_less_than_max(t *testing.T) {
 	// given a memlog
-	log := NewMemLog[string](10)
+	log := New[string](10)
 
 	// when fewer than 'max' entries are added to the log
 	log.Append("item #1")
@@ -49,7 +49,7 @@ func Test_memlog_get_length_when_size_is_less_than_max(t *testing.T) {
 
 func Test_memlog_get_length_when_log_is_at_max(t *testing.T) {
 	// given a memlog
-	log := NewMemLog[string](2)
+	log := New[string](2)
 
 	// when more than 'max' entries have been added
 	log.Append("item #1")
@@ -65,7 +65,7 @@ func Test_memlog_get_length_when_log_is_at_max(t *testing.T) {
 func Test_memlog_get_last_n_entries(t *testing.T) {
 	// given a memlog
 	max := 20
-	log := NewMemLog[string](max)
+	log := New[string](max)
 
 	// when more than 'max' entries have been added
 	for i := 0; i < max; i++ {
@@ -84,7 +84,7 @@ func Test_memlog_list_memory(t *testing.T) {
 	var l *memLog[string]
 
 	// given a memlog
-	l = NewMemLog[string](size)
+	l = New[string](size)
 
 	// when an item is appended
 	for i := 0; i < size; i++ {
@@ -104,7 +104,7 @@ func Test_memlog_list_memory_pointers(t *testing.T) {
 	size := 100000
 
 	// given a memlog
-	l := NewMemLog[*string](size)
+	l := New[*string](size)
 
 	// when an item is appended
 	for i := 0; i < size; i++ {
@@ -123,7 +123,7 @@ func Benchmark_memlog_list_build_list(b *testing.B) {
 	size := b.N
 
 	// given a memlog
-	l := NewMemLog[string](size)
+	l := New[string](size)
 
 	// when an item is appended
 	for i := 0; i < b.N; i++ {
@@ -136,7 +136,7 @@ func Benchmark_memlog_list_build_list_pointers(b *testing.B) {
 	size := b.N
 
 	// given a memlog
-	l := NewMemLog[*string](size)
+	l := New[*string](size)
 
 	// when an item is appended
 	for i := 0; i < b.N; i++ {
@@ -147,7 +147,7 @@ func Benchmark_memlog_list_build_list_pointers(b *testing.B) {
 
 func Benchmark_memlog_list_get_slice(b *testing.B) {
 	// given a memlog
-	l := NewMemLog[string](1000)
+	l := New[string](1000)
 
 	for i := 0; i < 1000; i++ {
 		msg := fmt.Sprintf("this is a sample log entry that is probaby pretty typical in length %d", i)
@@ -165,7 +165,7 @@ func Benchmark_memlog_list_get_slice(b *testing.B) {
 
 func Benchmark_memlog_list_get_slice_pointers(b *testing.B) {
 	// given a memlog
-	l := NewMemLog[*string](1000)
+	l := New[*string](1000)
 
 	for i := 0; i < 1000; i++ {
 		msg := fmt.Sprintf("this is a sample log entry that is probaby pretty typical in length %d", i)
