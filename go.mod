@@ -1,4 +1,4 @@
-module www.test.com/cb
+module github.com/yabosh/memlog
 
 go 1.19
 
